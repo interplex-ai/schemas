@@ -1,0 +1,32 @@
+syntax = "proto3";
+
+// well know type by google, gRPC gateway uses HTTP annotation.
+import "google/api/annotations.proto";
+
+package schema.v1;
+option go_package = "schema/v1";
+
+message SetRequest {
+  string key = 1;
+  string value = 2;
+}
+message SetResponse {
+
+}
+
+message GetRequest {
+  string key = 1;
+}
+message GetResponse {
+  string value = 1;
+}
+
+service CacheService {
+
+  rpc Set (SetRequest) returns (SetResponse) {
+    option (google.api.http) = {
+      post: "/v1/set"
+      body: "*"
+    };
+  }
+}
