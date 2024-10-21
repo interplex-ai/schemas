@@ -11,7 +11,7 @@ message SetRequest {
   string value = 2;
 }
 message SetResponse {
-
+  
 }
 
 message GetRequest {
@@ -26,6 +26,12 @@ service CacheService {
   rpc Set (SetRequest) returns (SetResponse) {
     option (google.api.http) = {
       post: "/v1/set"
+      body: "*"
+    };
+  }
+    rpc Get (GetRequest) returns (GetResponse) {
+    option (google.api.http) = {
+      post: "/v1/get"
       body: "*"
     };
   }
